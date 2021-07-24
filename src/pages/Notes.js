@@ -5,18 +5,23 @@ import Masonry from "react-masonry-css";
 
 const Notes = () => {
   const [notes, setNotes] = useState([]);
+  // const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrl = "https://json-server-material-ui-dummy.herokuapp.com/notes";
 
   const handleDelete = async (id) => {
-    await fetch(`http://localhost:8000/notes/${id}`, { method: "DELETE" });
+    await fetch(`${apiUrl}/${id}`, { method: "DELETE" });
     const newNotes = notes.filter((note) => note.id !== id);
     setNotes(newNotes);
   };
 
   useEffect(() => {
-    fetch("http://localhost:8000/notes")
+    fetch(apiUrl)
       .then((res) => res.json())
       .then((data) => {
         setNotes(data);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }, []);
 

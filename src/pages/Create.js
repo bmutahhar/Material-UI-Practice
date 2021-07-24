@@ -46,6 +46,7 @@ const Create = () => {
   const [category, setCategory] = useState("personal");
   const classes = useStyles();
   const history = useHistory();
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -61,7 +62,7 @@ const Create = () => {
     values.details === "" && setDetailsError(true);
 
     if (values.title && values.details) {
-      fetch("http://localhost:8000/notes", {
+      fetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
