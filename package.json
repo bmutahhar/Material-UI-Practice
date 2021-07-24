@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "dependencies": {
+    "json-server": "^0.16.3"
+  },
   "scripts": {
     "start": "node server.js"
   },
